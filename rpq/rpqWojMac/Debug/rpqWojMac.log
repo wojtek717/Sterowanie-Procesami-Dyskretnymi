@@ -1,0 +1,6 @@
+﻿  rpqWojMac.cpp
+C:\Users\Student241488\Downloads\rpqWojMac\rpqWojMac.cpp(11,46): warning C4114: ten sam kwalifikator typu użyty więcej niż raz
+C:\Users\Student241488\Downloads\rpqWojMac\rpqWojMac.cpp(94,22): warning C4018: "<": niezgodność typu ze znakiem/bez znaku
+C:\Users\Student241488\Downloads\rpqWojMac\rpqWojMac.cpp(127,21): warning C4018: "<": niezgodność typu ze znakiem/bez znaku
+C:\Users\Student241488\Downloads\rpqWojMac\rpqWojMac.cpp(135,21): warning C4018: "<": niezgodność typu ze znakiem/bez znaku
+  rpqWojMac.vcxproj -> C:\Users\Student241488\Downloads\rpqWojMac\Debug\rpqWojMac.exe
