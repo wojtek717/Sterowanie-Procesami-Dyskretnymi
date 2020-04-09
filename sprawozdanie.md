@@ -1,6 +1,6 @@
 ﻿# Ćwiczenie 3: Algorytm NEH
 ## Autorzy:
-Wojciech Konury 241488
+Wojciech Konury 241488  
 Maciej Szczurek 241179
 ## Termin oddania:
 06-04-2020 r.
