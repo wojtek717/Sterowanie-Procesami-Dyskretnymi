@@ -7,4 +7,4 @@ Maciej Szczurek 241179
 ## Sugerowana ocena:
 3.0
 ## Wyniki działania programu:
-Wyniki działania programu przedstawione są w pliku: nehResultFile.DAT
+Wyniki działania programu przedstawione są w pliku: [nehResultFile.DAT](https://github.com/wojtek717/Sterowanie-Procesami-Dyskretnymi/blob/master/NehAlgorithm/NehAlgorithm/nehResultFile.DAT)
