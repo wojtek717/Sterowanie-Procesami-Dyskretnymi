@@ -26,6 +26,7 @@ int czasDzialania(const std::vector<rpqItem> &rpqVector) {
 	return c;
 }
 
+
 bool czyDostepne(rpqItem& rpq, int time) {
 	return (rpq.r <= time);
 }
@@ -44,10 +45,10 @@ int main() {
 
 	
 	// ITERATOR PO NAZWACH PLIKOW
-	for (auto iteratorPlik = 1; iteratorPlik <= 4; iteratorPlik++)
+	for (auto iteratorPlik = 1; iteratorPlik <= 9; iteratorPlik++)
 	{
-		
-		std::stringstream ss; 
+
+		std::stringstream ss;
 		ss << "data" << iteratorPlik << ".txt";
 		std::string name = ss.str();
 
@@ -70,16 +71,20 @@ int main() {
 			plik.close();
 		}
 		else {
-			std::cout << "NIE OPEN";
+			std::cout << "FILE DID NOT OPEN";
 		}
 
 
 
 		std::vector<rpqItem> wykonane;
+
 		int time = 0;
-		rpqItem maxQ(-1, -1, -1, 0);
 		int maxQIndex = 0;
 		double czasTrwania = 0;
+
+		//Z podzialem
+		int tnext = 999999999;
+		bool dostepne = false;
 
 		//CZAS START
 		auto start = std::chrono::high_resolution_clock::now();
@@ -88,28 +93,43 @@ int main() {
 		//ALGORYTM
 		while (!rpqVector.empty())
 		{
+			dostepne = false;
 			rpqItem maxQ(-1, -1, -1, 0);
+			rpqItem minR(9999999, 0, 0, 0);
 
 			for (int i = 0; i < rpqVector.size(); ++i) {
-				if (czyDostepne(rpqVector[i], time))
-				{
+				if (czyDostepne(rpqVector[i], time)) {
+
 					if (rpqVector[i].q > maxQ.q) {
 						maxQ = rpqVector[i];
 						maxQIndex = i;
 					}
-				}
-			}
 
+					if(tnext >= rpqVector[i].r){
+						tnext = rpqVector[i].r;
+					}
+				}
+				else if (rpqVector[i].r < minR.r) {
+					minR = rpqVector[i];
+				}
+
+			}
 
 			if (maxQ.ordinalNumber != 0) {
-				wykonane.push_back(maxQ);
-				rpqVector.erase(rpqVector.begin() + maxQIndex);
 
-				time = time + maxQ.p;
+				if(tnext < (time + maxQ.p)){
+					maxQ.p = maxQ.p - (tnext - time);
+					time = tnext;
+				}else{
+					time = time + maxQ.p;
+
+					wykonane.push_back(maxQ);
+					rpqVector.erase(rpqVector.begin() + maxQIndex);
+				}
 			}
-
-
-			time++;
+			else {
+				time = tnext;
+			}
 		}
 
 		//CZAS STOP
@@ -123,11 +143,9 @@ int main() {
 		// OBLICZANIE WYNIKU
 
 
-		for (int i = 0; i < wykonane.size() ; ++i) {
-
-			wykonane[i].printRPQ();
-
-		}
+		//for (int i = 0; i < wykonane.size() ; ++i) {
+		//	wykonane[i].printRPQ();
+		//}
 
 
 		std::cout << std::endl << "Kolejka procesow: ";
@@ -147,5 +165,6 @@ int main() {
 
 	std::cout << "Laczny czas kolejki dla wszystkich zestawow danych: " << czasDzialaniaOstateczny << std::endl;
 
+	std::getchar();
 	return 0;
 }
